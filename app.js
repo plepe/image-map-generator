@@ -12,9 +12,25 @@ function updateFile () {
 fileInput.onchange = updateFile
 updateFile()
 
+function calcOffset (dom) {
+  const result = [ dom.offsetLeft, dom.offsetTop ]
+
+  if (dom.parentNode) {
+    const p = calcOffset(dom.parentNode)
+    if (p[0] !== undefined) {
+      result[0] += p[0]
+      result[1] += p[1]
+    }
+  }
+
+  return result
+}
+
 function get_pos (e) {
-  const x = e.clientX - img.offsetLeft
-  const y = e.clientY - img.offsetTop
+  const offset = calcOffset(img)
+
+  const x = e.clientX - offset[0]
+  const y = e.clientY - offset[1]
 
   const px = (100 * x / img.offsetWidth).toFixed(2)
   const py = (100 * y / img.offsetHeight).toFixed(2)
