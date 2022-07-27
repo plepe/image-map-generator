@@ -56,6 +56,8 @@ img.onmouseup = (e) => {
   const p = get_pos(e)
   pos.value += p[0] + ',' + p[1]
 
+  navigator.clipboard.writeText(pos.value)
+
   updateBorder()
 
   return false
