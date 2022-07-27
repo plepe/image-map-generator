@@ -28,11 +28,11 @@ img.ondragstart = (e) => {
 
 img.onmousedown = (e) => {
   const p = get_pos(e)
-  pos.innerHTML = p[0] + ',' + p[1] + ','
+  pos.value = p[0] + ',' + p[1] + ','
 }
 
 img.onmouseup = (e) => {
   const p = get_pos(e)
-  pos.innerHTML += p[0] + ',' + p[1]
+  pos.value += p[0] + ',' + p[1]
   return false
 }
