@@ -2,16 +2,24 @@
 <html>
 <head>
 <style>
+#container {
+  position: relative;
+  display: inline-block;
+}
 #img {
   max-width: 100%;
   max-height: 100%;
+}
+#border {
+  position: absolute;
+  border: 1px solid red;
 }
 </style>
 </head>
 <body>
 Upload an image: <input id='file' accept='image/*' type='file'>
 <div>Coordinates: <input id='pos'></div>
-<img id='img'>
+<div id='container'><img id='img'></div>
 </body>
 <script src="app.js"></script>
 </html>

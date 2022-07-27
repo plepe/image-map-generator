@@ -1,5 +1,7 @@
 const img = document.getElementById('img')
 const pos = document.getElementById('pos')
+const border = document.createElement('div')
+border.id = 'border'
 
 const fileInput = document.getElementById('file')
 function updateFile () {
@@ -10,7 +12,10 @@ function updateFile () {
 }
 
 fileInput.onchange = updateFile
+pos.onchange = updateBorder
+
 updateFile()
+updateBorder()
 
 function calcOffset (dom) {
   const result = [ dom.offsetLeft, dom.offsetTop ]
@@ -50,5 +55,18 @@ img.onmousedown = (e) => {
 img.onmouseup = (e) => {
   const p = get_pos(e)
   pos.value += p[0] + ',' + p[1]
+
+  updateBorder()
+
   return false
+}
+
+function updateBorder () {
+  const current_pos = pos.value.split(/,/g)
+
+  img.parentNode.appendChild(border)
+  border.style.left = current_pos[0] + '%'
+  border.style.top = current_pos[1] + '%'
+  border.style.width = (current_pos[2] - current_pos[0]) + '%'
+  border.style.height = (current_pos[3] - current_pos[1]) + '%'
 }
